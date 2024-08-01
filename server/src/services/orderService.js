@@ -1,10 +1,11 @@
-const { order, buyer, provider } = require('../models');
+const { Order } = require('../models');
+const { Buyer, Provider } = require('../models');
 
 const findAll = async () => {
-  const orders = await order.findAll({
+  const orders = await Order.findAll({
     include: [
-      { model: buyer, as: 'buyer' },
-      { model: provider, as: 'provider' },
+      { model: Buyer, as: 'buyer' },
+      { model: Provider, as: 'provider' },
     ],
   });
 

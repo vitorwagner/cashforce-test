@@ -1,5 +1,22 @@
 version: '3.9'
 services:
+  server:
+    container_name: app_server
+    build: ./server
+    ports:
+      - 3001:3001
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - ./server/.env
+    environment:
+      - MYSQL_HOST=db
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"]
+      timeout: 10s
+      retries: 5
   db:
     image: mysql:8.0.32
     container_name: db
