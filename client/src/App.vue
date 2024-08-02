@@ -14,5 +14,6 @@ import Content from './components/Content.vue';
 .app {
   display: flex;
   width: 100%;
+  margin: 0;
 }
 </style>
